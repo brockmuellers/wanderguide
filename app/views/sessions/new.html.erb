@@ -1,0 +1,26 @@
+<div class="page-header">
+  <h1>Log In</h1>
+</div>
+
+<%= form_tag nil, :class => 'form' do |f| %>
+  <div class="form-group">
+    <%= label_tag :email, 'Email', :class => 'control-label' %>
+    <div class="controls">
+      <%= text_field_tag :email, params[:email], :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= label_tag :password, 'Password', :class => 'control-label' %>
+    <div class="controls">
+      <%= password_field_tag :password, '', :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= submit_tag nil, :class => 'btn' %>
+  </div>
+
+  <p>
+    <%= link_to 'Register', new_user_path %>
+  </p>
+<% end %>

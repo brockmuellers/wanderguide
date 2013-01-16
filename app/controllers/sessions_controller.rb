@@ -1,4 +1,4 @@
-class SessionController < ApplicationController
+class SessionsController < ApplicationController
 	# GET '/login'
   #
   # Shows a login form
@@ -9,8 +9,8 @@ class SessionController < ApplicationController
   #
   # Logs a user in, given their email and password.
   def create
-    # Search for either a Organization or a Volunteer with the given email
-    user = Organization.find_by_email(params[:email]) || Volunteer.find_by_email(params[:email])
+    # Search for a User with the given email
+    user = User.find_by_email(params[:email])
     if user && user.authenticate(params[:password])
       # We found the user, and the password was correct. Log them in.
       session[:user_id] = user.id
@@ -32,5 +32,4 @@ class SessionController < ApplicationController
     session[:user_type] = nil
     redirect_to root_url, :notice => "You have been logged out."
   end
-end
 end

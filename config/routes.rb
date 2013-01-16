@@ -1,5 +1,6 @@
 Proj6470::Application.routes.draw do
   get "home/index"
+  get "home/about"
 
 	resources :users
 

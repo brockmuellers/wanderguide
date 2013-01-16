@@ -1,14 +1,83 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Proj6470</title>
+  <title>Wander Guide</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="<%= controller.controller_name %> <%= controller.action_name %>">
+  	<div class="navigation">
+			<div class="center">
+     		<div class="logo">
+	  			<%= link_to 'Wander Guide', root_path %>
+	      </div>
+				<div class="search-bar">
+				</div>
+				<ul class="links">
+					<% if current_user %>
+						<li>Add<i class="icon-plus"></i></li>
+						<li><%= link_to 'About', home_about_path %></li>
+						<li>Account<i class="icon-caret-down"></i>
+							<ul class="hover-dropdown">
+								<li><%= link_to 'Profile', user_path(current_user) %></li>
+								<li><%= link_to 'Settings', edit_user_path(current_user) %></li>
+								<li><%= link_to 'Logout', logout_path %></li>
+							</ul>
+						</li>
+					<% else %>
+						<li><%= link_to 'About', home_about_path %></li>
+						<li><%= link_to 'Login', login_path %></li>
+					<% end %>
+				</ul>
+			</div>
+    </div>
 
-<%= yield %>
+    <div class="content center">
+	    <% if flash[:alert] %>
+	      <div class="alert alert-error">
+	        <button type="button" class="close" data-dismiss="alert">×</button>
+	        <%= flash[:alert] %>
+	      </div>
+	    <% end %>
+
+	    <% if flash[:notice] %>
+	      <div class="alert">
+	        <button type="button" class="close" data-dismiss="alert">×</button>
+	        <%= flash[:notice] %>
+	      </div>
+	    <% end %>
+
+	    <%= yield %>
+	  </div>
+
+  	</div>
+    	<div class="push"></div>
+   	</div>
+	</div>
+
+  <div class="bottom">
+     Created for <a href="http://6.470.scripts.mit.edu/2013">6.470</a>
+     by Cristina Lozano and Sara Brockmueller. Source on
+     <a href="https://github.com/cml391/6.470">GitHub</a>.
+  </div>
+
+    <!-- Javascripts
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <%= javascript_include_tag "application" %>
+
+    <script type="text/javascript">
+	/*
+      $(document).ready(function(){
+      	$('.linebreak').each(function() {
+      		$(this).html($(this).text().replace(/\n\r?/g, '<br />'))
+      		});
+      });
+	*/
+    </script>
+
+    <%= yield :additional_scripts %>
 
 </body>
 </html>

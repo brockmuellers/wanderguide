@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   def redirect_after_login
     redir_target = session[:return_to] || user_path(current_user)
     session[:return_to] = nil
-    redirect_to redir_target, :notice => "Welcome, #{current_user.name}"
+    redirect_to redir_target, :notice => "Welcome, #{current_user.first_name}"
   end
 
   private

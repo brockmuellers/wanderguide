@@ -1,4 +1,4 @@
-class UserController < ApplicationController
+class UsersController < ApplicationController
 	before_filter :require_user, :only => [:edit, :update]
   before_filter :find_user, :except => [:new, :create]
   before_filter :require_ownership, :only => [:edit, :update]
