@@ -12,31 +12,154 @@
  *= require_tree .
  */
 
+	@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+	@import url(http://fonts.googleapis.com/css?family=Fjalla+One);
+	
+	// Colors
+		$lightgray: #F0F0F0;
+		$gray: #CCCCCC;
+		$dark: #111111;
+		
  	// General Styling 
 
 	// Positioning 
 		.center{
 		
 		}
+		
+	// Text Styling
+		a {
+			color: blue;
+			text-decoration: none;
+			font-weight: 600;
+		}
+		a:hover{
+			color: red;
+		}
+		a:active{
+			color: purple;
+		}
 	
 	// Application-wide Elements
+		body{
+			margin: 0px;
+			font-family: 'Open-Sans', sans-serif; 
+		}
+	
 		div.navigation{
-			div.logo{
-				
+			margin: 0px;
+			padding: 0px;
+			height: 50px;
+			background: $lightgray;
+			border-bottom: solid 1px $gray;
+			-moz-box-shadow:    inset 0 1px white;
+			-webkit-box-shadow: inset 0 1px white;
+			box-shadow:         inset 0 1px white;
+			
+			div.logo {
+				padding: 0px 20px;
+				display: inline-block;
+				line-height: 50px;
+				font-size: 28px;
+				font-family: 'Fjalla One';
+					a {
+						color: $dark;
+					}
 			}
 			div.search-bar{
-				
+				display: inline-block;
 			}
 			ul.links{
+				float: right;
+				list-style: none;
+				margin: 0px;
+				position: relative;
+				display: inline-table;
+				height: 51px;
+				
+				li{
+					float:left;
+					display: block;
+					vertical-align: middle;
+					color: $dark;
+					text-decoration: none;
+					text-transform: uppercase;
+					padding: 0 20px;
+					font-size: 14px;
+					line-height: 50px;
+					font-weight: 600;
+					border-right: 1px solid $lightgray;
+					border-left: 1px solid $lightgray;
+				}
+				
+				li:hover > ul{
+					display: block;
+				}
+				
+				li a {
+					display: block;
+					color: $dark;
+					text-decoration: none;
+				}
+				
+				li:hover {
+					color: black;
+					background: #D8D8D8;
+					border-color: $gray;
+				}
+				
+				li:hover a {
+					color: black;
+				}
 				
 				ul.hover-dropdown{
+					display: none;
+					background: $lightgray;
+					padding: 0px;
+					position: absolute;
+					top: 100%;
+					border: 1px solid $gray;
+					-moz-box-shadow:    1px 1px 2px 1px #DDDDDD;
+					-webkit-box-shadow: 1px 1px 2px 1px #DDDDDD;
+					box-shadow:         1px 1px 2px 1px #DDDDDD;
+					
+					li{
+						float: none;
+						border-top: 1px solid #EEEEEE;
+						border-bottom: 1px solid #CCCCCC;
+						position: relative;
+						text-transform: none;
+						line-height: 30px;
+						padding: 0px;
+						font-weight: normal;
+					}
+					
+					li a{
+						color: $dark;
+						padding: 0 20px;
+					}
+					
+					li a:hover{
+						color: black;
+						background: #D8D8D8;
+					}
 					
 				}
+			}
+			ul.links:after{
+				content: ""; clear: both; display: block;
 			}
 		}
 		
 		div.content{
-			
+			min-height: 400px;
+		}
+		
+		div.bottom{
+			border-top: 1px solid $gray;
+			background: $lightgray;
+			padding: 20px;
+			font-size: 12px;
 		}
 		
 		.form{
