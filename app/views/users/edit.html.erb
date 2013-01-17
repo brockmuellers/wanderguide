@@ -1,0 +1,84 @@
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @user, :html => { :class => 'form' } do |f| %>
+	<h1> Edit Account Settings </h1>
+  <div class="control-group">
+    <%= f.label :email %>
+    <div class="controls">
+      <%= f.text_field :email, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :password, 'New Password', :class => 'control-label' %>
+    <div class="controls">
+      <%= f.password_field :password, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :password_confirmation, 'Confirm New Password', :class => 'control-label' %>
+    <div class="controls">
+      <%= f.password_field :password_confirmation, :class => 'text_field' %>
+    </div>
+  </div>
+
+	<h1> Edit Profile Information </h1>
+	<div class="control-group">
+    <%= f.label "First Name" %>
+    <div class="controls">
+      <%= f.text_field :first_name, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label "Last Name" %>
+    <div class="controls">
+      <%= f.text_field :last_name, :class => 'text_field' %>
+    </div>
+  </div>
+	<div class="control-group">
+    <%= f.label "Location" %>
+    <div class="controls">
+      <%= f.text_field :location, :class => 'text_field' %>
+    </div>
+  </div>
+	<div class="control-group">
+	  <%= f.label "About you", :class => 'control-label' %>
+	  <div class="controls">
+	    <%= f.text_area :about, :class => 'text_area', :id => 'about_user' %>
+	  	<p id="counter" class="help-block"></p>
+	  </div>
+	</div>
+	
+	
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn' %>
+    <%= link_to 'Cancel',
+                root_path, :class => 'btn' %>
+  </div>
+<% end %>
+
+<% content_for :additional_scripts do %>
+  <script  type="text/javascript">
+    $(document).ready(function() {
+    	var characters = 220;
+    	$("#counter").append("You have <strong>"+  characters+"</strong> characters remaining");
+    	$("#about_user").keyup(function(){
+        if($(this).val().length > characters){
+       		$(this).val($(this).val().substr(0, characters));
+        }
+    		var remaining = characters -  $(this).val().length;
+   	 		$("#counter").html("You have <strong>"+  remaining+"</strong> characters remaining");
+   	 	});
+   	 	$('#about_user').keyup();
+   });
+  </script>
+<% end %>

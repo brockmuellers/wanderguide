@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :first_name, :last_name, :password, :password_confirmation, :username
+  attr_accessible :email, :first_name, :last_name, :password, :password_confirmation, :username, :location, :about
+  has_many :trips
   has_secure_password
-  has_many trips
   
   validate :email_must_be_unique
   validates :password, :presence => true, :on => :create
@@ -9,8 +9,7 @@ class User < ActiveRecord::Base
 
   # Validation to ensure emails are unique
   def email_must_be_unique
-    if (User.where(['email = ?', self.email]).count > 0)
-
+    if (User.where(['email = ? AND id <> ?', self.email, self.id]).count > 0)
       errors.add(:email, "is already taken")
     end
   end
