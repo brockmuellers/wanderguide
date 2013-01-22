@@ -31,12 +31,12 @@
   </div>
 	<div class="control-group">
     <%= label_tag "Location" %>
-		<%= f.fields_for :locations do |builder| %>
-	    <div class="controls">
-	      <%= render 'location_fields', f: builder %>
-	    </div>
-		<% end %>
-		<%= link_to_add_fields "Add Location", f, :locations %>
+		<div class="controls">
+			<%= f.fields_for :locations do |builder| %>
+		    <%= render 'location_fields', f: builder %>
+			<% end %>
+			<%= link_to_add_fields "Add Location", f, :locations %>
+		</div>
   </div>
 
   <div class="form-actions">

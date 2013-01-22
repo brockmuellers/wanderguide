@@ -29,7 +29,6 @@ class TripsController < ApplicationController
   # GET /users/1/trips/new.json
   def new
     @trip = Trip.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @trip }
