@@ -1,0 +1,30 @@
+<div class="info-header">
+	<div class="details">
+		<p class="heading"> 
+			<%= @trip.name %>
+		</p>
+		<p class="start_date">
+			<span>Start Date: </span>
+			<%= @trip.start_date ? @trip.start_date.strftime('%B %d, %Y') : 'none' %>
+		</p>
+		<p class="end_date">
+				<span>End Date: </span>
+			<%= @trip.end_date ? @trip.end_date.strftime('%B %d, %Y') : 'none' %>
+		</p>
+		<p class="about">
+			<%= @trip.description %>
+		</p>
+		<p class="locations">
+			<% @trip.locations.each do |location| %>
+				<span> <%= location.name %> </span>
+			<% end %>
+		</p>
+	</div>
+	<div class="side">
+		<% if @user == current_user %>
+			<div class="controls-header">
+				<%= link_to 'Edit Trip', edit_user_trip_path(@user, @trip), :class => 'btn' %>
+			</div>
+		<% end %>
+	</div>
+</div>

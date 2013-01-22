@@ -1,0 +1,45 @@
+<div class="info-header">
+	<div class="details">
+		<p class="heading"> 
+			<%= @user.full_name %>
+		</p>
+		<p class="email">
+			<%= @user.email %>
+		</p>
+		<p class="about">
+			<%= @user.about %>
+		</p>
+	</div>
+	<div class="side">
+		<% if @user == current_user %>
+			<div class="controls-header">
+				<%= link_to 'Edit Profile', edit_user_path(@user), :class => 'btn' %>
+			</div>
+		<% end %>
+	</div>
+</div>
+<div class>
+	<div class="tab_bar">
+		<ul>
+			<% if @user == current_user %>
+				<li>My Trips</li>
+			<% else %>
+				<li><%= @user.first_name %>'s Trips</li>
+			<% end %>
+			<li>Bookmarks</li>
+		</ul>
+		<% if @user == current_user %>
+			<%= link_to "Create Trip", new_user_trip_path(@user) %>
+		<% end %>
+	</div>
+	<div class="my_trips">
+		<h3>My Trips</h3>
+		<div class="thumbnail_display">
+			<% @user.trips.each do |trip| %>
+			<div class="thumbnail">
+				<h3><%= link_to trip.name, user_trip_path(@user, trip) %></h3>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</div>

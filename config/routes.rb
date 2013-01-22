@@ -3,6 +3,11 @@ Proj6470::Application.routes.draw do
   get "home/about"
 
 	resources :users
+	
+	resources :users do
+    resources :trips 
+  end
+
 
   match '/login' => 'sessions#new', :via => :get, :as => 'login'
   match '/login' => 'sessions#create', :via => :post

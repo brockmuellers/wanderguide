@@ -18,7 +18,7 @@
 					<% if current_user %>
 						<li>Add<i class="icon-plus"></i></li>
 						<li><%= link_to 'About', home_about_path %></li>
-						<li>Account<i class="icon-caret-down"></i>
+						<li><%= current_user.first_name %><i class="icon-caret-down"></i>
 							<ul class="hover-dropdown">
 								<li><%= link_to 'Profile', user_path(current_user) %></li>
 								<li><%= link_to 'Settings', edit_user_path(current_user) %></li>
@@ -33,21 +33,20 @@
 			</div>
     </div>
 
-    <div class="content center">
+    <div class="alert-block center">
 	    <% if flash[:alert] %>
 	      <div class="alert alert-error">
-	        <button type="button" class="close" data-dismiss="alert">×</button>
 	        <%= flash[:alert] %>
 	      </div>
 	    <% end %>
 
 	    <% if flash[:notice] %>
 	      <div class="alert">
-	        <button type="button" class="close" data-dismiss="alert">×</button>
 	        <%= flash[:notice] %>
 	      </div>
 	    <% end %>
-
+		</div>
+		<div class="content center">
 	    <%= yield %>
 	  </div>
 

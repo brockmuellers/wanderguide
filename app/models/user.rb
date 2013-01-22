@@ -14,4 +14,9 @@ class User < ActiveRecord::Base
     end
   end
   
+  # Makes full name out of first and last name
+  def full_name
+    return first_name + " " + last_name
+  end
+  
 end
