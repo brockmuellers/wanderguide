@@ -14,3 +14,29 @@
 //= require jquery_ujs
 //= require_tree .
 
+function showMyTrips(){
+  $("#my_trips").removeClass("hidden");
+  $("#past_trips").addClass("hidden");
+  $("#bookmarked_trips").addClass("hidden");
+  $("#my_trips_link").addClass("selected");
+  $("#past_trips_link").removeClass("selected");
+  $("#bookmarked_trips_link").removeClass("selected");
+}
+  
+function showPastTrips(){
+  $("#my_trips").addClass("hidden");
+  $("#past_trips").removeClass("hidden");
+  $("#bookmarked_trips").addClass("hidden");
+  $("#my_trips_link").removeClass("selected");
+  $("#past_trips_link").addClass("selected");
+  $("#bookmarked_trips_link").removeClass("selected");
+}
+  
+function showBookmarkedTrips(){
+  $("#my_trips").addClass("hidden");
+  $("#past_trips").addClass("hidden");
+  $("#bookmarked_trips").removeClass("hidden");
+  $("#my_trips_link").removeClass("selected");
+  $("#past_trips_link").removeClass("selected");
+  $("#bookmarked_trips_link").addClass("selected");
+}

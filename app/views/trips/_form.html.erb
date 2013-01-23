@@ -59,6 +59,14 @@
    	 		$("#counter").html("You have <strong>"+  remaining+"</strong> characters remaining");
    	 	});
    	 	$('#about_trip').keyup();
-   });
+
+			var options = {
+			  types: ['(regions)']
+			};
+
+			$('.location_text_field').each(function() {
+				new google.maps.places.Autocomplete($(this)[0], options);
+			});
+		});
   </script>
 <% end %>

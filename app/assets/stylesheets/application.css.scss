@@ -13,12 +13,16 @@
  */
 
 	@import url(http://fonts.googleapis.com/css?family=Open+Sans);
-	@import url(http://fonts.googleapis.com/css?family=Fjalla+One);
 	
 	// Colors
-		$lightgray: #E5E4DC;
-		$gray: #C4C2B5;
-		$dark: #111111;
+		$background: #F2F2F0;
+		$lightgray: #D9DADB;
+		$gray: #AAAFB3;
+		$darkgray: #5C5F72;
+		$orange: #EF6754;
+		$blue: #98D1D0;
+		$teal: #1F7299;
+		
 		
  	// General Styling 
 
@@ -30,15 +34,15 @@
 		
 	// Text Styling
 		a {
-			color: blue;
+			color: teal;
 			text-decoration: none;
 			font-weight: 600;
 		}
 		a:hover{
-			color: red;
+			color: teal;
 		}
 		a:active{
-			color: purple;
+			color: teal;
 		}
 		
 		.center-text{
@@ -50,7 +54,8 @@
 			margin: 0px;
 			font-family: 'Open-Sans', sans-serif; 
 			font-size: 14px;
-			background: $lightgray;
+			background: $background;
+			color: $darkgray;
 		}
 		
 		.content{
@@ -75,8 +80,8 @@
 		}
 		
 		.highlight-box{
-			background: $lightgray;
-			border: 1px solid $gray;
+			background: white;
+			border: 1px solid $lightgray;
 			padding: 20px 50px;
 			
 			hr.long{
@@ -86,52 +91,52 @@
 		
 		hr{
 			border-top: 0px solid white;
-			border-bottom: 1px solid $gray;
+			border-bottom: 1px solid $lightgray;
 		}
 	
 		div.navigation{
 			margin: 0px;
-			padding: 0px;
-			height: 50px;
-			background: $lightgray;
-			border-bottom: solid 1px $gray;
+			padding-top: 10px;
+			height: 140px;
 			-moz-box-shadow:    inset 0 1px white;
 			-webkit-box-shadow: inset 0 1px white;
 			box-shadow:         inset 0 1px white;
 			
 			div.logo {
 				display: inline-block;
-				line-height: 50px;
-				font-size: 28px;
-				font-family: 'Fjalla One';
-					a {
-						color: $dark;
-					}
 			}
-			div.search-bar{
-				display: inline-block;
+			
+			div.right_logo {
+			  display: inline-block;
+			  width: 800px;
+			  height: 90px;
+			  float: right;
+			  position: relative;
 			}
+			
 			ul.links{
 				float: right;
 				list-style: none;
 				margin: 0px;
+				padding: 0px;
 				position: relative;
 				display: inline-table;
-				height: 51px;
+				height: 90px;
 				
 				li{
 					float:left;
 					display: block;
-					vertical-align: middle;
-					color: $dark;
+					vertical-align: bottom;
+					color: $darkgray;
 					text-decoration: none;
 					text-transform: uppercase;
-					padding: 0 20px;
+					width: 160px;
+					border-bottom: 5px solid black;
 					font-size: 14px;
-					line-height: 50px;
+					line-height: 30px;
 					font-weight: 600;
-					border-right: 1px solid $lightgray;
-					border-left: 1px solid $lightgray;
+					height: 30px;
+					padding-top: 60px;
 				}
 				
 				li:hover > ul{
@@ -140,14 +145,28 @@
 				
 				li a {
 					display: block;
-					color: $dark;
+					color: $darkgray;
 					text-decoration: none;
 				}
 				
-				li:hover {
-					color: black;
-					background: #D8D8D8;
-					border-color: $gray;
+				.hoverable:hover{
+					  color: black;
+				}
+				
+				#lightgray{
+				  border-color: $lightgray;
+				}
+				#gray{
+				  border-color: $gray;
+				}
+				#darkgray{
+				  border-color: $darkgray;
+				}
+				#blue{
+				  border-color: $blue;
+				}
+				#orange{
+				  border-color: $orange;
 				}
 				
 				li:hover a {
@@ -156,11 +175,11 @@
 				
 				ul.hover-dropdown{
 					display: none;
-					background: $lightgray;
+					background: white;
 					padding: 0px;
 					position: absolute;
 					top: 100%;
-					border: 1px solid $gray;
+					border: 1px solid $lightgray;
 					-moz-box-shadow:    1px 1px 2px 1px #DDDDDD;
 					-webkit-box-shadow: 1px 1px 2px 1px #DDDDDD;
 					box-shadow:         1px 1px 2px 1px #DDDDDD;
@@ -177,7 +196,7 @@
 					}
 					
 					li a{
-						color: $dark;
+						color: $darkgray;
 						padding: 0 20px;
 					}
 					
@@ -198,7 +217,7 @@
 		}
 		
 		div.bottom{
-			border-top: 1px solid $gray;
+			border-top: 1px solid $lightgray;
 			background: white;
 			padding: 20px;
 			font-size: 12px;
@@ -220,7 +239,7 @@
 						-webkit-border-radius: 3px; 
 						-moz-border-radius: 3px; 
 						border-radius: 3px;
-						border:solid 1px $gray;
+						border:solid 1px $lightgray;
 					}
 					.text_area{
 						

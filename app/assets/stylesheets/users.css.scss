@@ -1,3 +1,89 @@
 // Place all the styles related to the user controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// Colors
+	$background: #F2F2F0;
+	$lightgray: #D9DADB;
+	$gray: #AAAFB3;
+	$darkgray: #5C5F72;
+	$orange: #EF6754;
+	$blue: #98D1D0;
+	$teal: #1F7299;
+
+.users{
+  .hidden{
+  	display: none;
+  }
+  
+  #user_stats{
+    background: white;
+    border: 1px solid $lightgray;
+    width: 145px;
+    height: 260px;
+    color: $darkgray;
+    font-weight: 600;
+    text-align: center;
+    float: right;
+    margin-right: 20px;
+    -moz-box-shadow:    0px 1px 4px 1px $lightgray;
+		-webkit-box-shadow: 0px 1px 4px 1px $lightgray;
+		box-shadow:         0px 1px 4px 1px $lightgray;
+  }
+  
+  h1{
+    font-size: 30px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+  }
+  
+  .tab_bar{
+		background: $lightgray;
+		height: 35px;
+		padding: 0px 25px;
+		
+    ul{
+      line-height: 35px;
+			list-style: none;
+			padding: 0px;
+		}
+    
+    .tab_button{
+    	background-color: transparent; 
+    	border: 0; 
+    	padding: 0;
+		  font-weight: 600;
+		  text-transform: uppercase;
+		  float:left;
+		  padding-right: 60px;
+		  font-size: 14px;
+		  line-height: 35px;
+		  margin: 0px;
+  		color: $darkgray;
+    }
+    
+    .selected{
+      color: $orange;
+    }
+  }
+  
+  #main_display{
+    width: 795px;
+    
+    #create_trip_box{
+      width: 500px;
+      height: 40px;
+      text-align: center;
+      background: $blue;
+    }
+    
+    #create_trip_link{
+      color: $darkgray;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 16px;
+      line-height:40px;
+      padding: 10px 10px;
+    }
+  }
+}

@@ -6,10 +6,13 @@ jQuery ->
   $('form').on 'click', '.remove_fields', (event) ->
     $(this).prev('input[type=hidden]').val('1')
     $(this).closest('fieldset').hide()
-    event.preventDefault()
-
+    event.preventDefault()	
+		
   $('form').on 'click', '.add_fields', (event) ->
     time = new Date().getTime()
     regexp = new RegExp($(this).data('id'), 'g')
     $(this).before($(this).data('fields').replace(regexp, time))
+    options = types: ["(regions)"]
+    $(".location_text_field").each ->
+      new google.maps.places.Autocomplete($(this)[0], options)
     event.preventDefault()

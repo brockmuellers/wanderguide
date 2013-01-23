@@ -4,31 +4,37 @@
   <title>Wander Guide</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= csrf_meta_tags %>
+	<script type="text/javascript" 		src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB2hxObNMo51LAl6CHDDEvxsQ95yaV71fg&libraries=places&sensor=false"></script>
 </head>
 <body class="<%= controller.controller_name %> <%= controller.action_name %>">
   	<div class="navigation">
 			<div class="center">
      		<div class="logo">
-	  			<%= link_to 'Wander Guide', root_path %>
+	  			<%= link_to image_tag("logo.png"), root_path %>
 	      </div>
-				<div class="search-bar">
+				<div class="right_logo">
+					<div class="search-bar">
+					</div>
+					<ul class="links">
+						<% if current_user %>
+							<li id="orange"></li>
+							<li id="darkgray"></li>
+							<li id="lightgray" class="hoverable">Add<i class="icon-plus"></i></li>
+							<li id="blue" class="hoverable"><%= link_to 'About', home_about_path %></li>
+							<li id="gray" class="hoverable"><%= current_user.first_name %><i class="icon-caret-down"></i>
+								<ul class="hover-dropdown">
+									<li><%= link_to 'Profile', user_path(current_user) %></li>
+									<li><%= link_to 'Settings', edit_user_path(current_user) %></li>
+									<li><%= link_to 'Logout', logout_path, :method => 'delete' %></li>
+								</ul>
+							</li>
+						<% else %>
+							<li id="lightgray"></li>
+							<li id="blue" class="hoverable"><%= link_to 'About', home_about_path %></li>
+							<li id="gray" class="hoverable"><%= link_to 'Login', login_path %></li>
+						<% end %>
+					</ul>
 				</div>
-				<ul class="links">
-					<% if current_user %>
-						<li>Add<i class="icon-plus"></i></li>
-						<li><%= link_to 'About', home_about_path %></li>
-						<li><%= current_user.first_name %><i class="icon-caret-down"></i>
-							<ul class="hover-dropdown">
-								<li><%= link_to 'Profile', user_path(current_user) %></li>
-								<li><%= link_to 'Settings', edit_user_path(current_user) %></li>
-								<li><%= link_to 'Logout', logout_path, :method => 'delete' %></li>
-							</ul>
-						</li>
-					<% else %>
-						<li><%= link_to 'About', home_about_path %></li>
-						<li><%= link_to 'Login', login_path %></li>
-					<% end %>
-				</ul>
 			</div>
     </div>
 
@@ -64,7 +70,6 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %>
-
     <script type="text/javascript">
 	/*
       $(document).ready(function(){

@@ -1,45 +1,41 @@
-<div class="info-header">
-	<div class="details">
-		<p class="heading"> 
-			<%= @user.full_name %>
-		</p>
-		<p class="email">
-			<%= @user.email %>
-		</p>
-		<p class="about">
-			<%= @user.about %>
-		</p>
-	</div>
-	<div class="side">
-		<% if @user == current_user %>
-			<div class="controls-header">
-				<%= link_to 'Edit Profile', edit_user_path(@user), :class => 'btn' %>
-			</div>
-		<% end %>
-	</div>
+<div id="user_stats">
+	<%= @user.email %>
 </div>
-<div class>
-	<div class="tab_bar">
-		<ul>
-			<% if @user == current_user %>
-				<li>My Trips</li>
-			<% else %>
-				<li><%= @user.first_name %>'s Trips</li>
-			<% end %>
-			<li>Bookmarks</li>
-		</ul>
+<h1><%= @user.full_name %></h1>
+<div class="tab_bar">
+	<ul>
 		<% if @user == current_user %>
-			<%= link_to "Create Trip", new_user_trip_path(@user) %>
+			<li><button id="my_trips_link" class="selected tab_button" onclick="showMyTrips()">My Trips</button></li>
+		<% else %>
+			<li><button id="my_trips_link" class="selected tab_button" onclick="showMyTrips()"><%= @user.first_name %>'s Trips</button></li>
+		<% end %>
+		<li><button id="past_trips_link" class="tab_button" onclick="showPastTrips()">Past Trips</button></li>
+		<li><button id="bookmarked_trips_link" class="tab_button" onclick="showBookmarkedTrips()">Bookmarked</button></li>
+	</ul>
+</div>
+<div id="main_display">
+	<div id="create_trip_box" class="center">
+		<% if @user == current_user %>
+			<%= link_to "+ Create Trip", new_user_trip_path(@user), :id=>"create_trip_link" %>
 		<% end %>
 	</div>
-	<div class="my_trips">
-		<h3>My Trips</h3>
-		<div class="thumbnail_display">
-			<% @user.trips.each do |trip| %>
-			<div class="thumbnail">
-				<h3><%= link_to trip.name, user_trip_path(@user, trip) %></h3>
-			</div>
-			<% end %>
+	<div id="my_trips" class="thumbnail_display">
+		<% @user.trips.where(:complete => false).each do |trip| %>
+		<div class="thumbnail">
+			<h3><%= link_to trip.name, user_trip_path(@user, trip) %></h3>
 		</div>
+		<% end %>
+	</div>
+	<div id="past_trips" class="thumbnail_display">
+		<% @user.trips.where(:complete => true).each do |trip| %>
+		<div class="thumbnail">
+			<h3><%= link_to trip.name, user_trip_path(@user, trip) %></h3>
+		</div>
+		<% end %>
+	</div>
+	<div id="bookmarked_trips" class="thumbnail_display">
 	</div>
 </div>
+
+
+
