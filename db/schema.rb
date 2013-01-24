@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130123040245) do
+ActiveRecord::Schema.define(:version => 20130123202539) do
 
   create_table "activities", :force => true do |t|
     t.string   "name"
@@ -60,15 +60,16 @@ ActiveRecord::Schema.define(:version => 20130123040245) do
     t.string   "name"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.boolean  "complete",    :null => false
+    t.boolean  "complete",       :null => false
     t.float    "rating"
     t.text     "description"
     t.string   "category"
     t.text     "diary"
     t.integer  "user_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.integer  "budget"
+    t.string   "filepicker_url"
   end
 
   create_table "users", :force => true do |t|
@@ -80,6 +81,7 @@ ActiveRecord::Schema.define(:version => 20130123040245) do
     t.datetime "updated_at",      :null => false
     t.text     "about"
     t.text     "location"
+    t.string   "filepicker_url"
   end
 
 end

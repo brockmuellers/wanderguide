@@ -1,4 +1,5 @@
 <div id="user_stats">
+	<%= filepicker_user_image_tag_for @user %>
 	<%= @user.email %>
 </div>
 <h1><%= @user.full_name %></h1>
@@ -22,6 +23,8 @@
 	<div id="my_trips" class="thumbnail_display">
 		<% @user.trips.where(:complete => false).each do |trip| %>
 		<div class="thumbnail">
+			<%= link_to image_tag(filepicker_trip_link_src_for trip), user_trip_path(@user, trip) %>
+			<%= image_tag "thumbnail-shadow.png", :class => "shadow" %>
 			<h3><%= link_to trip.name, user_trip_path(@user, trip) %></h3>
 		</div>
 		<% end %>
@@ -29,6 +32,8 @@
 	<div id="past_trips" class="thumbnail_display">
 		<% @user.trips.where(:complete => true).each do |trip| %>
 		<div class="thumbnail">
+			<%= link_to image_tag(filepicker_trip_link_src_for trip), user_trip_path(@user, trip) %>
+			<%= image_tag "thumbnail-shadow.png", :class => "shadow" %>
 			<h3><%= link_to trip.name, user_trip_path(@user, trip) %></h3>
 		</div>
 		<% end %>

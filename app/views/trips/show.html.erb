@@ -19,6 +19,10 @@
 				<span> <%= location.name %> </span>
 			<% end %>
 		</p>
+		<p class="category">
+				<span>Category: </span>
+			<%= @trip.category %>
+		</p>
 	</div>
 	<div class="side">
 		<% if @user == current_user %>

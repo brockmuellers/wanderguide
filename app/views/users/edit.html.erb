@@ -45,6 +45,12 @@
     </div>
   </div>
 	<div class="control-group">
+		<a class="btn filepicker-btn">Pick a file</a>
+    <br /><br />
+    <%= filepicker_user_image_tag_for @user %>
+		<%= f.hidden_field :filepicker_url, :id => 'filepicker_url_field' %>
+	</div>
+	<div class="control-group">
     <%= f.label "Location" %>
     <div class="controls">
       <%= f.text_field :location, :class => 'text_field' %>

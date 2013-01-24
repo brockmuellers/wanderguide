@@ -1,5 +1,5 @@
 class Trip < ActiveRecord::Base
-  attr_accessible :category, :complete, :description, :diary, :end_date, :name, :rating, :start_date, :locations_attributes
+  attr_accessible :category, :complete, :description, :diary, :end_date, :name, :rating, :start_date, :locations_attributes, :filepicker_url
   has_many :days, :as => :trip_location
   has_many :locations
   accepts_nested_attributes_for :locations, :reject_if => lambda { |a| a[:name].blank? }, allow_destroy: true
