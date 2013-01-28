@@ -30,6 +30,8 @@ gem 'jquery-rails'
 
 gem 'filepicker-rails'
 
+gem 'font-awesome-sass-rails'
+
 # To use ActiveModel has_secure_password
  gem 'bcrypt-ruby', '~> 3.0.0'
 

@@ -1,34 +1,120 @@
 <div class="info-header">
-	<div class="details">
-		<p class="heading"> 
-			<%= @trip.name %>
-		</p>
-		<p class="start_date">
-			<span>Start Date: </span>
-			<%= @trip.start_date ? @trip.start_date.strftime('%B %d, %Y') : 'none' %>
-		</p>
-		<p class="end_date">
-				<span>End Date: </span>
-			<%= @trip.end_date ? @trip.end_date.strftime('%B %d, %Y') : 'none' %>
-		</p>
-		<p class="about">
-			<%= @trip.description %>
-		</p>
-		<p class="locations">
+	<h1><%= @trip.name %></h1>
+	<div id="trip-details">
+		<div class="detail">
+			<p class="detail-label">Budget</p>
+			<p class="detail-content"><%= @trip.budget ? "$"+ @trip.budget.to_s : '-----' %></p>
+		</div>
+		<div class="detail">
+			<p class="detail-label">Category</p>
+			<p class="detail-content"><%= @trip.category %></p>
+		</div>
+		<div class="detail">
+			<p class="detail-label">Start Date</p>
+			<p class="detail-content"><%= @trip.start_date ? @trip.start_date.strftime('%B %d, %Y') : '-----' %></p>
+		</div>
+		<div class="detail">
+			<p class="detail-label">End Date</p>
+			<p class="detail-content"><%= @trip.end_date ? @trip.end_date.strftime('%B %d, %Y') : '-----' %></p>
+		</div>
+		<div class="detail-long">
+			<p class="detail-label">Locations</p>
+			<p class="detail-content">
+			<% if @trip.locations.empty? %>
+           <span>-----</span>
+       <% end %>
 			<% @trip.locations.each do |location| %>
 				<span> <%= location.name %> </span>
 			<% end %>
-		</p>
-		<p class="category">
-				<span>Category: </span>
-			<%= @trip.category %>
-		</p>
+			</p>
+		</div>
+		<div class="detail-long">
+			<p class="detail-label">Description</p>
+			<p class="detail-content"><%= @trip.description %></p>
+		</div>
+	</div>
+	<div id="trip_image" class="thumbnail">
+		<%= filepicker_trip_image_tag_for @trip %>
+		<%= image_tag "thumbnail-shadow.png", :class => "shadow" %>
 	</div>
 	<div class="side">
 		<% if @user == current_user %>
 			<div class="controls-header">
-				<%= link_to 'Edit Trip', edit_user_trip_path(@user, @trip), :class => 'btn' %>
+				<%= link_to 'Edit Trip', edit_user_trip_path(@user, @trip) %>
+				<%= link_to 'Delete Trip', user_trip_path(@user, @trip), :method => 'delete' %>
+				<%= link_to new_user_trip_day_path(@user, @trip)  do %>
+					<i class="icon-plus"></i>
+					Day
+				<% end %>
+				<%= link_to new_user_trip_activity_path(@user, @trip)  do %>
+					<i class="icon-plus"></i>
+					Activity
+				<% end %>
 			</div>
 		<% end %>
 	</div>
 </div>
+<div class="tab_bar">
+	<ul>
+		<li><button id="trip_days_link" class="selected tab_button" onclick="showTripDays()">Days</button></li>
+		<li><button id="trip_activities_link" class="tab_button" onclick="showTripActivities()">Activities</button></li>
+		<li><button id="trip_map_link" class="tab_button" onclick="showTripMap()">Map</button></li>
+		<li><button id="trip_calendar_link" class="tab_button" onclick="showTripCalendar()">Calendar</button></li>
+	</ul>
+</div>
+<div id="trip_days">
+	<% @trip.days.each do |day| %>
+		<%= link_to day.name, user_trip_day_path(@user, @trip, day)%>
+	<% end %>
+</div>
+<div id="trip_activities" class="hidden">
+	<% @trip.activities.each do |activity| %>
+		<%= link_to activity.name, user_trip_activity_path(@user, @trip, activity)%>
+	<% end %>
+</div>
+<div id="trip_map" class="hidden">
+	<div id="map_details">
+		<% @trip.locations.each do |location| %>
+		<div class="location_details">
+			<p class="lat"><%= location.latitude %></p>
+			<p class="lng"><%= location.longitude %></p>
+		</div>
+		<% end %>
+	</div>
+	<div id="map_canvas" style="width: 100%; height: 100%">
+	</div>
+</div>
+<div id="trip_calendar" class="hidden">
+</div>
+
+<% content_for :additional_scripts do %>
+  <script  type="text/javascript">
+    $(document).ready(function() {
+			var myOptions = {
+			    zoom: 10,
+			    center: new google.maps.LatLng(0, 0),
+			    mapTypeId: google.maps.MapTypeId.ROADMAP
+			  }
+			var map = new google.maps.Map(
+			    document.getElementById("map_canvas"),
+			    myOptions);
+			
+			var bounds = new google.maps.LatLngBounds();
+			$('.location_details').each(setMarkers(map, bounds));
+			map.fitBounds(bounds);
+		});
+		
+		function setMarkers(map, bounds){
+			  var lat = $(this).children('.lat').text();
+				var lng = $(this).children('.lng').text();
+				alert(lat);
+				alert(lng);
+		    var myLatLng = new google.maps.LatLng(beach[1], beach[2]);
+		    var marker = new google.maps.Marker({
+		      position: myLatLng,
+		      map: map,
+		      title: beach[0],
+		    });
+		}
+	</script>
+<% end %>

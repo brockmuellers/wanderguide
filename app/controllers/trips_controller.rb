@@ -69,6 +69,15 @@ class TripsController < ApplicationController
       end
     end
   end
+  
+
+  #
+  # Delete the trip
+  def destroy
+    user = @trip.user
+    @trip.destroy
+    redirect_to user_path(user)
+  end
 
   private
 
@@ -81,4 +90,5 @@ class TripsController < ApplicationController
       redirect_to root_url, :alert => "You don't own that trip."
     end
   end
+
 end

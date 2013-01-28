@@ -40,3 +40,75 @@ function showBookmarkedTrips(){
   $("#past_trips_link").removeClass("selected");
   $("#bookmarked_trips_link").addClass("selected");
 }
+
+function showTripDays(){
+  $("#trip_days").removeClass("hidden");
+  $("#trip_activities").addClass("hidden");
+  $("#trip_map").addClass("hidden");
+  $("#trip_calendar").addClass("hidden");
+  $("#trip_days_link").addClass("selected");
+  $("#trip_activities_link").removeClass("selected");
+  $("#trip_map_link").removeClass("selected");
+  $("#trip_calendar_link").removeClass("selected");
+}
+
+function showTripActivities(){
+  $("#trip_days").addClass("hidden");
+  $("#trip_activities").removeClass("hidden");
+  $("#trip_map").addClass("hidden");
+  $("#trip_calendar").addClass("hidden");
+  $("#trip_days_link").removeClass("selected");
+  $("#trip_activities_link").addClass("selected");
+  $("#trip_map_link").removeClass("selected");
+  $("#trip_calendar_link").removeClass("selected");
+}
+
+function showTripMap(){
+  $("#trip_days").addClass("hidden");
+  $("#trip_activities").addClass("hidden");
+  $("#trip_map").removeClass("hidden");
+  $("#trip_calendar").addClass("hidden");
+  $("#trip_days_link").removeClass("selected");
+  $("#trip_activities_link").removeClass("selected");
+  $("#trip_map_link").addClass("selected");
+  $("#trip_calendar_link").removeClass("selected");
+}
+
+function showTripCalendar(){
+  $("#trip_days").addClass("hidden");
+  $("#trip_activities").addClass("hidden");
+  $("#trip_map").addClass("hidden");
+  $("#trip_calendar").removeClass("hidden");
+  $("#trip_days_link").removeClass("selected");
+  $("#trip_activities_link").removeClass("selected");
+  $("#trip_map_link").removeClass("selected");
+  $("#trip_calendar_link").addClass("selected");
+}
+
+function showDayActivities(){
+  $("#day_activities").removeClass("hidden");
+  $("#day_map").addClass("hidden");
+  $("#day_calendar").addClass("hidden");
+  $("#day_activities_link").addClass("selected");
+  $("#day_map_link").removeClass("selected");
+  $("#day_calendar_link").removeClass("selected");
+}
+
+function showDayMap(){
+  $("#day_activities").addClass("hidden");
+  $("#day_map").removeClass("hidden");
+  $("#day_calendar").addClass("hidden");
+  $("#day_activities_link").removeClass("selected");
+  $("#day_map_link").addClass("selected");
+  $("#day_calendar_link").removeClass("selected");
+}
+
+function showDayCalendar(){
+  $("#day_activities").addClass("hidden");
+  $("#day_map").addClass("hidden");
+  $("#day_calendar").removeClass("hidden");
+  $("#day_activities_link").removeClass("selected");
+  $("#day_map_link").removeClass("selected");
+  $("#day_calendar_link").addClass("selected");
+}
+

@@ -16,12 +16,12 @@
 					<div class="search-bar">
 					</div>
 					<ul class="links">
+						<li id="orange"></li>
+						<li id="darkgray"></li>
 						<% if current_user %>
-							<li id="orange"></li>
-							<li id="darkgray"></li>
 							<li id="lightgray" class="hoverable">Add<i class="icon-plus"></i></li>
 							<li id="blue" class="hoverable"><%= link_to 'About', home_about_path %></li>
-							<li id="gray" class="hoverable"><%= current_user.first_name %><i class="icon-caret-down"></i>
+							<li id="gray" class="hoverable"><%= link_to user_path(current_user) do %> <%= current_user.first_name %><i class="icon-caret-down"></i><% end %>
 								<ul class="hover-dropdown">
 									<li><%= link_to 'Profile', user_path(current_user) %></li>
 									<li><%= link_to 'Settings', edit_user_path(current_user) %></li>

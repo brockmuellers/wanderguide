@@ -1,1 +1,29 @@
-<h1>Welcome to Wander Guide</h1>
+<div class="tab_bar">
+	<ul>
+		<li><button id="popular_link" class="tab_button" onclick="showPopular()">Popular</button></li>
+		<li><button id="newest_link" class="selected tab_button" onclick="showNewest()">Newest</button></li>
+		<li><button id="following_link" class="tab_button" onclick="showFollowing()">Following</button></li>
+	</ul>
+</div>
+<div id="Popular" class="thumbnail_display">
+	
+</div>
+<div id="Newest" class="thumbnail_display">
+	<% Trip.order('created_at DESC').limit(20).each do |trip| %>
+	<div class="thumbnail">
+		<%= link_to image_tag(filepicker_trip_link_src_for trip), trip_path(trip) %>
+		<div class="hover-details">
+			<p class="detail-label"> Created By: </p>
+			<p class="detail-content"> <%= trip.user.full_name %> </p>
+			<p class="detail-label"> Category: </p>
+			<p class="detail-content"> <%= trip.category %> </p>
+			<p class="detail-label"> Description: </p>
+			<p class="detail-content"> <%= trip.description %> </p>
+		</div>
+		<%= image_tag "thumbnail-shadow.png", :class => "shadow" %>
+		<h3><%= link_to trip.name, trip_path(trip) %></h3>
+	</div>
+	<% end %>
+</div>
+<div id="Following" class="thumbnail_display">
+</div>

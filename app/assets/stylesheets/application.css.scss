@@ -9,6 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require _font-awesome
  *= require_tree .
  */
 
@@ -21,7 +22,7 @@
 		$darkgray: #5C5F72;
 		$orange: #EF6754;
 		$blue: #98D1D0;
-		$teal: #1F7299;
+		$teal: #64A59F;
 		
 		
  	// General Styling 
@@ -34,15 +35,15 @@
 		
 	// Text Styling
 		a {
-			color: teal;
+			color: $teal;
 			text-decoration: none;
 			font-weight: 600;
 		}
 		a:hover{
-			color: teal;
+			color: $teal;
 		}
 		a:active{
-			color: teal;
+			color: $teal;
 		}
 		
 		.center-text{
@@ -50,9 +51,13 @@
 		}
 	
 	// Application-wide Elements
+	  .hidden{
+    	display: none;
+    }
+    
 		body{
 			margin: 0px;
-			font-family: 'Open-Sans', sans-serif; 
+			font-family: 'Open Sans', sans-serif; 
 			font-size: 14px;
 			background: $background;
 			color: $darkgray;
@@ -64,19 +69,19 @@
 		}
 		
 		.alert{
+		  margin-top: 5px;
+			border:solid 1px rgba(152, 209, 208, 0.6);
 			-webkit-border-radius: 3px; 
 			-moz-border-radius: 3px; 
 			border-radius: 3px;
 			padding: 10px 15px;
-			background: rgba(158, 190, 166, 0.3);
-			border-color: rgba(158, 190, 166, 0.6);
-			color: #555;
+			background: rgba(152, 209, 208, 0.3);
+			color: $darkgray;
 		}
 		
 		.alert-error{
-			border:solid 1px $gray;
-			background: rgba(214, 76, 42, 0.3);
-			border-color: rgba(214, 76, 42, 0.6);
+			background: rgba(239, 103, 84, 0.3);
+			border-color: rgba(239, 103, 84, 0.6);
 		}
 		
 		.highlight-box{
@@ -221,12 +226,14 @@
 			background: white;
 			padding: 20px;
 			font-size: 12px;
+			text-align: center;
 		}
 		
 		.thumbnail{
 		  display: inline-block;
 	    width: 229px;
-	    padding: 15px;
+	    margin: 15px;
+	    position: relative;
 		  
 		  img{
 		    padding: 7px;
@@ -244,7 +251,7 @@
 		  
 		  h3{
 		    text-align: center;
-		    margin-top: 0px;
+		    margin: 0px;
 		    
 		    a{
 		      font-weight: 600;
@@ -253,16 +260,64 @@
 		      text-transform: uppercase;
 		    }
 		  }
+		  
+		  .hover-details{
+		    visibility: hidden;
+		    pointer-events: none;
+		    position:absolute;
+		    top:8px;
+		    left:8px;
+		    width: 213px;
+		    height: 178px;
+		    background: rgba(225,225,225,.8);
+		    border: 1px solid #BBBBBB;
+		    
+		    .detail-label{
+		      color: black;
+		      font-weight: 600;
+		      font-size: 14px;
+		      margin: 2px 10px;
+		    }
+		    
+		    .detail-content{
+		      color: black;
+		      font-size: 14px;
+		      margin: 2px 10px 5px 20px;
+          max-height: 60px;
+          overflow: hidden;
+		    }
+		  }
+		}
+		
+		.thumbnail:hover{
+		  .hover-details{
+		    visibility: visible;
+		  }
+		  a{
+		    color:black;
+		  }
+		}
+		
+		.form-header{
+		  border-bottom: 3px double $lightgray;
+		  padding-bottom: 5px;
 		}
 		
 		.form{
 			margin: 20px 0px;
+			
+			h1{
+			  border-bottom: 3px double $lightgray;
+			  padding-bottom: 5px;
+			}
 			.control-group{
 				margin: 20px 0px;
 				label{
 					text-transform: uppercase;
 					font-weight: 600;
 					font-size: 14px;
+					font-family: "Open Sans";
+					color: $darkgray;
 				}
 				.controls{
 					.text_field{
@@ -272,21 +327,157 @@
 						-moz-border-radius: 3px; 
 						border-radius: 3px;
 						border:solid 1px $lightgray;
+						font-family: "Open Sans";
+						color: $darkgray;
 					}
 					.text_area{
-						
+						font-family: "Open Sans";
+						color: $darkgray;
+						-webkit-border-radius: 3px; 
+						-moz-border-radius: 3px; 
+						border-radius: 3px;
+						border:solid 1px $lightgray;
+						font-size: 14px;
+						resize: none;
+						height: 150px;
+						padding: 5px;
+					}
+					
+					.number_field{
+					  font-size: 14px;
+						padding: 5px;
+						-webkit-border-radius: 3px; 
+						-moz-border-radius: 3px; 
+						border-radius: 3px;
+						border:solid 1px $lightgray;
+						font-family: "Open Sans";
+						color: $darkgray;
+					}
+					
+					select{
+					  font-size: 14px;
+						padding: 5px;
+						-webkit-border-radius: 3px; 
+						-moz-border-radius: 3px; 
+						border-radius: 3px;
+						border: solid 1px $lightgray;
+						font-family: "Open Sans";
+						color: $darkgray;
 					}
 				}
 			}
 		}
 		
-		input.btn{
-			font-size: 16px;
-			padding: 4px 12px;
-			text-align: center;
-			vertical-align: middle;
-		}
+		.btn-bold {
+		    margin: 5px 0px;
+        padding: 10px 15px;
+        font-size: 16px;
+        background: $orange;
+        background: -moz-linear-gradient(#F28576, $orange); /* FF 3.6+ */   
+        background: -webkit-linear-gradient(#F28576, $orange); /* Safari 5.1+, Chrome 10+ */  
+        color: white;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        border: solid 1px #C25444;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+        -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+        -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        user-select:none;
+        font-family: "Open Sans";
+        font-weight: 600;
+    }
+    .btn-bold:hover {
+        background: $orange;
+        border: solid 1px #AF4C3D;
+        text-decoration: none;
+    }
+    .btn-bold:active {
+        -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+        -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+        box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+        background: #D75D4C;
+        border: solid 1px #AC4A3D;
+    }
+    
+    .btn {
+        margin: 5px 0px;
+        display: inline-block;
+        padding: 5px 10px;
+        font-size: 14px;
+        background: $blue;
+        background: -moz-linear-gradient($blue, #89BCBB); /* FF 3.6+ */   
+        background: -webkit-linear-gradient($blue, #89BCBB); /* Safari 5.1+, Chrome 10+ */  
+        color: white;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        border: solid 1px #7BA9A8;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+        -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+        -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        user-select:none;
+        font-family: "Open Sans";
+        font-weight: 600;
+    }
+    .btn:hover {
+        color: white;
+        background: #89BCBB;
+        border: solid 1px #6F9897;
+        text-decoration: none;
+    }
+    .btn:active {
+        -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+        -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+        box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+        background: #7BA9A8;
+        border: solid 1px #648988;
+        color: white;
+    }
 		
 		.user-img{
 		  border-radius: 5px;
+		  margin-top: 5px;
 		}
+		
+		.tab_bar{
+  		background: $lightgray;
+  		height: 35px;
+  		padding: 0px 25px;
+
+      ul{
+        line-height: 35px;
+  			list-style: none;
+  			padding: 0px;
+  		}
+
+      .tab_button{
+      	background-color: transparent; 
+      	border: 0; 
+      	padding: 0;
+  		  font-weight: 600;
+  		  text-transform: uppercase;
+  		  float:left;
+  		  padding-right: 60px;
+  		  font-size: 14px;
+  		  line-height: 35px;
+  		  margin: 0px;
+    		color: $darkgray;
+      }
+
+      .tab_button:hover{
+        color: black;
+      }
+
+      .selected{
+        color: $orange;
+      }
+    }

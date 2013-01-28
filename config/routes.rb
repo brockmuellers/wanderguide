@@ -4,10 +4,16 @@ Proj6470::Application.routes.draw do
 
 	resources :users
 	
+	resources :trips
+	
 	resources :users do
-    resources :trips 
-  end
-
+    resources :trips do
+      resources :activities
+      resources :days do 
+        resources :activities
+      end
+    end
+  end 
 
   match '/login' => 'sessions#new', :via => :get, :as => 'login'
   match '/login' => 'sessions#create', :via => :post

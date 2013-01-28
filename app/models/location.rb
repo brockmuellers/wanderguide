@@ -1,6 +1,4 @@
 class Location < ActiveRecord::Base
-  attr_accessible :description, :name, :trip_id
-  has_many :days, :as => :trip_location
-  has_many :activities, :as => :trip_element
+  attr_accessible :description, :name, :reference, :latitude, :longitude
   belongs_to :trip
 end

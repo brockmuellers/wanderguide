@@ -14,3 +14,4 @@ Image Acknowledgements:
 "Retired designed by Lemon Liu from The Noun Project"
 "Couple designed by Shankar Narayan from The Noun Project"
 "Mountains designed by Chris Cole from The Noun Project"
+"Monument designed by Giorgia Guarino from The Noun Project"

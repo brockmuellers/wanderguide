@@ -7,8 +7,8 @@ class CreateDays < ActiveRecord::Migration
       t.boolean :complete
       t.float :rating
       t.text :diary
-      t.references :trip_location, :polymorphic => true
-
+      t.references :trip
+      
       t.timestamps
     end
   end

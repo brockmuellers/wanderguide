@@ -1,3 +1,97 @@
 // Place all the styles related to the trip controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// Colors
+	$background: #F2F2F0;
+	$lightgray: #D9DADB;
+	$gray: #AAAFB3;
+	$darkgray: #5C5F72;
+	$orange: #EF6754;
+	$blue: #98D1D0;
+	$teal: #64A59F;
+
+.trips{  
+  #map_details{
+    display:none;
+  }
+    
+  h1 {
+    margin: 10px 0px;
+    font-size: 30px;
+  }
+  .info-header{
+    
+    .side{
+      height: 197px;
+      display: inline-block;
+      border-left: 1px solid $lightgray;
+      vertical-align: top;
+      margin-left: 20px;
+      padding-left: 15px;
+      
+      a{
+        text-transform: uppercase;
+        color: $orange;
+        font-size: 14px;
+        font-weight: 600;
+        display: block;
+        margin: 10px 0px;
+      }
+    }
+    
+    #trip_image{
+      margin: 0px;
+      vertical-align: top;
+    }
+  
+    #trip-details{
+      width: 555px;
+      display: inline-block;
+      margin: 0px;
+      padding: 0px;
+    
+      .detail{
+        width: 135px;
+        display: inline-block;
+      
+        .detail-label{
+          text-transform: uppercase;
+          font-size: 14px;
+          font-weight: bold;
+          color: $teal;
+          margin: 5px 0px;
+        }
+      
+        .detail-content{
+          font-size: 18px;
+          font-weight: bold;
+          margin: 5px 0px;
+        }
+      }
+    
+      .detail-long{
+        width: 550px;
+        margin-bottom: 15px;
+      
+        .detail-label{
+          text-transform: uppercase;
+          font-size: 14px;
+          font-weight: bold;
+          color: $teal;
+          margin: 5px 0px;
+        }
+      
+        .detail-content{
+          font-size: 14px;
+          margin: 5px 0px;
+        
+          span{
+            font-weight: 600;
+            margin: 0px 20px 0px 0px;
+          }
+        }
+      }
+    }
+  }
+}

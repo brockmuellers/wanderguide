@@ -1,3 +1,18 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Less here: http://lesscss.org/
+
+.home{
+  // Colors
+		$background: #F2F2F0;
+		$lightgray: #D9DADB;
+		$gray: #AAAFB3;
+		$darkgray: #5C5F72;
+		$orange: #EF6754;
+		$blue: #98D1D0;
+		$teal: #64A59F;
+		
+		.thumbnail{
+		  margin: 10px 5px 10px 5px;
+		}
+}

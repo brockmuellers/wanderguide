@@ -14,5 +14,12 @@ jQuery ->
     $(this).before($(this).data('fields').replace(regexp, time))
     options = types: ["(regions)"]
     $(".location_text_field").each ->
-      new google.maps.places.Autocomplete($(this)[0], options)
+      autocomplete = new google.maps.places.Autocomplete($(this)[0], options)
+      location_field = this
+      google.maps.event.addListener autocomplete, "place_changed", ->
+        place = autocomplete.getPlace()
+        $(location_field).next(".reference").val place.reference
+        $(location_field).next(".lat").val place.geometry.location.lat()
+        $(location_field).next(".lng").val place.geometry.location.lng()
     event.preventDefault()
+  
