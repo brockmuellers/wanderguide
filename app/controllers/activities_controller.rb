@@ -18,7 +18,7 @@ class ActivitiesController < ApplicationController
   # GET /users/1/activities/1
   # GET /users/1/activities/1.json
   def show
-    @activity = Activity.find(params[:activity_id])
+    @activity = Activity.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @activity }
@@ -29,6 +29,8 @@ class ActivitiesController < ApplicationController
   # GET /users/1/activities/new.json
   def new
     @activity = Activity.new
+    @user = User.find(params[:user_id])
+    find_trip_element
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @activity }
@@ -42,7 +44,7 @@ class ActivitiesController < ApplicationController
   # POST /users/1/activities
   # POST /users/1/activities.json
   def create
-    @trip_element = find_trip_element
+    find_trip_element
     @activity = @trip_element.activities.new(params[:activity])
 
     respond_to do |format|
@@ -97,6 +99,9 @@ class ActivitiesController < ApplicationController
   def find_activity
     @activity = Activity.find(params[:id])
     @trip_element = @activity.trip_element
+    if @trip_element.kind_of? Day
+      @trip = @trip_element.trip
+    end
     @user = @trip_element.find_user
   end
   
@@ -107,6 +112,7 @@ class ActivitiesController < ApplicationController
       end
       if name == "day_id"
         @trip_element = Day.find(value)
+        @trip = @trip_element.trip
       end
     end
     @user = @trip_element.find_user

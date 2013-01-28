@@ -9,7 +9,7 @@
     </ul>
   </div>
 <% end %>
-<%= form_for [@user, @trip, @day, @activity], :html => { :class => 'form' } do |f| %>
+<%= form_for [@user, @trip, @trip_element, @activity], :html => { :class => 'form' } do |f| %>
   <div class="control-group">
     <%= f.label "Name" %>
     <div class="controls">

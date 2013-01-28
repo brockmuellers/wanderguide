@@ -1,32 +1,38 @@
 <div class="info-header">
-	<h1><%=link_to @trip.name, user_trip_path(@user, @trip)%> &rarr; <%= @day.name %></h1>
+	<% if @trip_element.kind_of? Trip%>
+		<h1><%=link_to @trip_element.name, user_trip_path(@user, @trip_element)%> &rarr; <%= @activity.name %></h1>
+	<% else %>
+		<h1><%=link_to @trip.name, user_trip_path(@user, @trip)%> &rarr; <%=link_to @trip.name, user_trip_day_path(@user, @trip, @trip_element)%> &rarr; <%= @activity.name %></h1>
+	<% end %>
 	<div id="day-details">
 		<div class="detail">
 			<p class="detail-label">Date</p>
-			<p class="detail-content"><%= @day.date ? @trip.date.strftime('%B %d, %Y') : '-----' %></p>
+			<p class="detail-content"><%= @activity.date ? @activity.date.strftime('%B %d, %Y') : '-----' %></p>
+		</div>
+		<div class="detail-long">
+			<p class="detail-label">URL</p>
+			<p class="detail-content"><%= @activity.link %></p>
 		</div>
 		<div class="detail-long">
 			<p class="detail-label">Description</p>
-			<p class="detail-content"><%= @day.description %></p>
+			<p class="detail-content"><%= @activity.description %></p>
+		</div>
+		<div class="detail-long">
+			<p class="detail-label">Address</p>
+			<p class="detail-content"><%= @activity.address %></p>
 		</div>
 	</div>
 	<div class="side">
 		<% if @user == current_user %>
 			<div class="controls-header">
-				<%= link_to 'Edit Day', edit_user_trip_day_path(@user, @trip, @day) %>
-				<%= link_to 'Delete Day', user_trip_day_path(@user, @trip, @day), :method => 'delete' %>
-				<%= link_to new_user_trip_day_activity_path(@user, @trip, @day)  do %>
-					<i class="icon-plus"></i>
-					Activity
+				<% if @trip_element.kind_of? Trip%>
+					<%= link_to 'Edit Activity', edit_user_trip_activity_path(@user, @trip_element, @activity) %>
+					<%= link_to 'Delete Activity', user_trip_activity_path(@user, @trip_element, @activity), :method => 'delete' %>
+				<% else %>
+					<%= link_to 'Edit Activity', edit_user_trip_day_activity_path(@user, @trip, @trip_element, @activity) %>
+					<%= link_to 'Delete Activity', user_trip_day_activity_path(@user, @trip, @trip_element, @activity), :method => 'delete' %>
 				<% end %>
 			</div>
 		<% end %>
 	</div>
-</div>
-<div class="tab_bar">
-	<ul>
-		<li><button id="activities_link" class="tab_button" onclick="showActivities()">Activities</button></li>
-		<li><button id="map_link" class="tab_button" onclick="showMap()">Map</button></li>
-		<li><button id="calendar_link" class="tab_button" onclick="showCalendar()">Schedule</button></li>
-	</ul>
 </div>
