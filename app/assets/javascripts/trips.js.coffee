@@ -18,8 +18,8 @@ jQuery ->
       location_field = this
       google.maps.event.addListener autocomplete, "place_changed", ->
         place = autocomplete.getPlace()
-        $(location_field).next(".reference").val place.reference
-        $(location_field).next(".lat").val place.geometry.location.lat()
-        $(location_field).next(".lng").val place.geometry.location.lng()
+        $(location_field).siblings(".reference").val place.reference
+        $(location_field).siblings(".lat").val place.geometry.location.lat()
+        $(location_field).siblings(".lng").val place.geometry.location.lng()
     event.preventDefault()
   

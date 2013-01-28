@@ -42,6 +42,7 @@ class ActivitiesController < ApplicationController
   # POST /users/1/activities
   # POST /users/1/activities.json
   def create
+    @trip_element = find_trip_element
     @activity = @trip_element.activities.new(params[:activity])
 
     respond_to do |format|

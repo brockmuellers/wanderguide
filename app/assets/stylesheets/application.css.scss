@@ -306,6 +306,11 @@
 		.form{
 			margin: 20px 0px;
 			
+			fieldset{
+			  border: none;
+			  padding: 0px;
+			}
+			
 			h1{
 			  border-bottom: 3px double $lightgray;
 			  padding-bottom: 5px;
@@ -329,6 +334,7 @@
 						border:solid 1px $lightgray;
 						font-family: "Open Sans";
 						color: $darkgray;
+						margin: 5px 0px;
 					}
 					.text_area{
 						font-family: "Open Sans";
@@ -341,6 +347,7 @@
 						resize: none;
 						height: 150px;
 						padding: 5px;
+						margin: 5px 0px;
 					}
 					
 					.number_field{
@@ -352,6 +359,7 @@
 						border:solid 1px $lightgray;
 						font-family: "Open Sans";
 						color: $darkgray;
+						margin: 5px 0px;
 					}
 					
 					select{
@@ -363,6 +371,7 @@
 						border: solid 1px $lightgray;
 						font-family: "Open Sans";
 						color: $darkgray;
+						margin: 5px 0px;
 					}
 				}
 			}

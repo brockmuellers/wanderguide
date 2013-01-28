@@ -50,7 +50,7 @@
 			<%= f.fields_for :locations do |builder| %>
 		    <%= render 'location_fields', f: builder %>
 			<% end %>
-			<%= link_to_add_fields "Add Location", f, :locations %>
+			<%= link_to_add_fields "+ Add Location", f, :locations %>
 		</div>
   </div>
 
@@ -86,9 +86,9 @@
 				var location_field = this;
 				google.maps.event.addListener(autocomplete, 'place_changed', function() {
 				    var place = autocomplete.getPlace();
-						$(location_field).next('.reference').val(place.reference);
-						$(location_field).next('.lat').val(place.geometry.location.lat());
-						$(location_field).next('.lng').val(place.geometry.location.lng());
+						$(location_field).siblings('.reference').val(place.reference);
+						$(location_field).siblings('.lat').val(place.geometry.location.lat());
+						$(location_field).siblings('.lng').val(place.geometry.location.lng());
 				});
 			});
 		});
