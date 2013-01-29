@@ -28,6 +28,18 @@
       <%= f.number_field :budget, :class => 'number_field' %>
     </div>
   </div>
+	<div class="control-group">
+    <%= f.label "Start Date" %>
+    <div class="controls">
+     	<%= f.text_field :start_date, :class => 'date-input text_field' %>
+    </div>
+  </div>
+	<div class="control-group">
+    <%= f.label "End Date" %>
+    <div class="controls">
+      <%= f.text_field :end_date, :class => 'date-input text_field' %>
+    </div>
+  </div>
   <div class="control-group">
     <%= f.label "Description" %>
     <div class="controls">
@@ -65,7 +77,8 @@
   <script  type="text/javascript">
 
     $(document).ready(function() {
-	
+			$('.date-input').datepicker({altFormat: 'yyyy-mm-dd'});
+			
     	var characters = 220;
     	$("#counter").append("You have <strong>"+  characters+"</strong> characters remaining");
     	$("#about_trip").keyup(function(){
