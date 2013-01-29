@@ -40,6 +40,8 @@ class DaysController < ApplicationController
 
   # GET /users/1/days/1/edit
   def edit
+    @trip = Trip.find(params[:trip_id])
+    @user = User.find(params[:user_id])
   end
 
   # POST /users/1/days
@@ -63,9 +65,10 @@ class DaysController < ApplicationController
   # PUT /users/1/days/1
   # PUT /users/1/days/1.json
   def update
+    user = @day.find_user
     respond_to do |format|
       if @day.update_attributes(params[:day])
-        format.html { redirect_to trip_day_url(@day.trip, @day), notice: 'Day was successfully updated.' }
+        format.html { redirect_to user_trip_day_url(user, @day.trip, @day), notice: 'Day was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

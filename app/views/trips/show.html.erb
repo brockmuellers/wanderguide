@@ -64,12 +64,31 @@
 </div>
 <div id="trip_days">
 	<% @trip.days.each do |day| %>
-		<%= link_to day.name, user_trip_day_path(@user, @trip, day)%>
+	<div class="day-display">
+		<div class="day-header">
+			<%= link_to day.name, user_trip_day_path(@user, @trip, day), :class=>'day-title' %>
+			<p class="day-date"><%= day.date ? day.date.strftime('%B %d, %Y') : '-----' %></p>
+		</div>
+		<div class="day-details">
+			<%= day.description %>
+		</div>
+	</div>
+	<%= image_tag "thumbnail-shadow.png", :class => "long-shadow" %>
 	<% end %>
 </div>
 <div id="trip_activities" class="hidden">
 	<% @trip.activities.each do |activity| %>
-		<%= link_to activity.name, user_trip_activity_path(@user, @trip, activity)%>
+		<div class="activity-display">
+			<div class="activity-header">
+				<%= link_to activity.name, user_trip_activity_path(@user, @trip, activity), :class=>'activity-title' %>
+				<p class="activity-date"><%= activity.date ? activity.date.strftime('%B %d, %Y') : '-----' %></p>
+			</div>
+			<div class="activity-details">
+				<p class="detail-content"><%= activity.description %></p>
+				<%= link_to activity.link, activity.link, :class=>'detail-link' %>
+			</div>
+		</div>
+		<%= image_tag "thumbnail-shadow.png", :class => "long-shadow" %>
 	<% end %>
 </div>
 <div id="trip_map" class="hidden">
@@ -96,11 +115,11 @@
 			    center: new google.maps.LatLng(0, 0),
 			    mapTypeId: google.maps.MapTypeId.ROADMAP
 			  }
-			var map = new google.maps.Map(
+			map = new google.maps.Map(
 			    document.getElementById("map_canvas"),
 			    myOptions);
 			
-			var bounds = new google.maps.LatLngBounds();
+			bounds = new google.maps.LatLngBounds();
 			
 			$('.location_details').each(function(index){
 				var lat = $(this).children('.lat').html();
@@ -115,8 +134,29 @@
 				bounds.extend(myLatLng);
 			});
 			map.fitBounds(bounds);
-			google.maps.event.trigger(map, 'resize');
+			google.maps.event.trigger(map, 'resize'); 
+			map.setZoom( this.map.getZoom() - 1 );
+			map.setZoom( this.map.getZoom() + 1 );
+
 		});
+		
+		
+		function showTripMap(){
+			google.maps.event.addListenerOnce(map, "idle", function(){
+				map.fitBounds(bounds);
+				google.maps.event.trigger(map, 'resize'); 
+			});
+			map.setZoom( this.map.getZoom() - 1 );
+			map.setZoom( this.map.getZoom() + 1 );
+		  $("#trip_days").addClass("hidden");
+		  $("#trip_activities").addClass("hidden");
+		  $("#trip_map").removeClass("hidden");
+		  $("#trip_calendar").addClass("hidden");
+		  $("#trip_days_link").removeClass("selected");
+		  $("#trip_activities_link").removeClass("selected");
+		  $("#trip_map_link").addClass("selected");
+		  $("#trip_calendar_link").removeClass("selected");
+		}
 
 	</script>
 <% end %>

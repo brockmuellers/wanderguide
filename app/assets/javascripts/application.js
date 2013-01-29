@@ -63,17 +63,6 @@ function showTripActivities(){
   $("#trip_calendar_link").removeClass("selected");
 }
 
-function showTripMap(){
-  $("#trip_days").addClass("hidden");
-  $("#trip_activities").addClass("hidden");
-  $("#trip_map").removeClass("hidden");
-  $("#trip_calendar").addClass("hidden");
-  $("#trip_days_link").removeClass("selected");
-  $("#trip_activities_link").removeClass("selected");
-  $("#trip_map_link").addClass("selected");
-  $("#trip_calendar_link").removeClass("selected");
-}
-
 function showTripCalendar(){
   $("#trip_days").addClass("hidden");
   $("#trip_activities").addClass("hidden");

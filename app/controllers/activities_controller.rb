@@ -39,6 +39,8 @@ class ActivitiesController < ApplicationController
 
   # GET /users/1/activities/1/edit
   def edit
+    @user = User.find(params[:user_id])
+    find_trip_element
   end
 
   # POST /users/1/activities
@@ -67,6 +69,8 @@ class ActivitiesController < ApplicationController
   # PUT /users/1/activities/1
   # PUT /users/1/activities/1.json
   def update
+    @user = User.find(params[:user_id])
+    find_trip_element
     respond_to do |format|
       if @activity.update_attributes(params[:activity]) 
         if @trip_element.kind_of? Trip
