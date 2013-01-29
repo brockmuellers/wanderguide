@@ -30,3 +30,18 @@
 		<li><button id="day_calendar_link" class="tab_button" onclick="showDayCalendar()">Schedule</button></li>
 	</ul>
 </div>
+<div id="day_activities">
+	<% @day.activities.each do |activity| %>
+		<div class="activity-display">
+			<div class="activity-header">
+				<%= link_to activity.name, user_trip_day_activity_path(@user, @trip, @day, activity), :class=>'activity-title' %>
+				<p class="activity-date"><%= activity.date ? activity.date.strftime('%B %d, %Y') : '-----' %></p>
+			</div>
+			<div class="activity-details">
+				<p class="detail-content"><%= activity.description %></p>
+				<%= link_to activity.link, activity.link, :class=>'detail-link' %>
+			</div>
+		</div>
+		<%= image_tag "thumbnail-shadow.png", :class => "long-shadow" %>
+	<% end %>
+</div>

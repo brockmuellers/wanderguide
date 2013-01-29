@@ -2,7 +2,7 @@
 	<% if @trip_element.kind_of? Trip%>
 		<h1><%=link_to @trip_element.name, user_trip_path(@user, @trip_element)%> &rarr; <%= @activity.name %></h1>
 	<% else %>
-		<h1><%=link_to @trip.name, user_trip_path(@user, @trip)%> &rarr; <%=link_to @trip.name, user_trip_day_path(@user, @trip, @trip_element)%> &rarr; <%= @activity.name %></h1>
+		<h1><%=link_to @trip.name, user_trip_path(@user, @trip)%> &rarr; <%=link_to @trip_element.name, user_trip_day_path(@user, @trip, @trip_element)%> &rarr; <%= @activity.name %></h1>
 	<% end %>
 	<div id="day-details">
 		<div class="detail">
